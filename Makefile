@@ -26,7 +26,9 @@ SYSTEMCTL ?= systemctl
 
 .DEFAULT_GOAL := check
 .NOTPARALLEL:
-.PHONY: sync test lint fmt build check install uninstall enable disable require-live
+.PHONY: setup sync test lint fmt build check install uninstall enable disable require-live
+
+setup: sync
 
 sync:
 	$(UV) sync --locked
@@ -35,7 +37,7 @@ test:
 	$(UV) run --locked python -X warn_default_encoding -W error::EncodingWarning -m unittest discover -s tests
 
 lint:
-	$(UV) run --locked ruff check .
+	$(UV) run --locked ruff check --no-fix .
 	$(UV) run --locked ruff format --check .
 
 fmt:

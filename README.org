@@ -152,10 +152,10 @@ Web UI behaviour relied on:
 
 * Development
 
-uv 0.11.7+.
+Python 3.14 and uv 0.11.7+.
 
 #+begin_src sh
-uv sync --locked
+make setup
 make check
 #+end_src
 
